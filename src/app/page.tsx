@@ -12,8 +12,18 @@ export default async function Home() {
 
 
   return <div>
-    {res.contents.map((content: any) => {
-      return <Link key={content.id} href={`blog/${content.id}`}>{content.title}</Link>
-    })}
+    <h1>ブログサンプル</h1>
+    <h2>記事一覧</h2>
+    <ul>
+      {res.contents.map((content: any, index: number) => {
+        const created_at = new Date(content.createdAt).toLocaleDateString()
+        return <>
+          <li key={index}>
+            <Link href={`blog/${content.id}`}><span className="font-bold text-4xl">{created_at}</span> {content.title}</Link>
+          </li>
+        </>
+
+      })}
+    </ul>
   </div>
 }
